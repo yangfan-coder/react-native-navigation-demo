@@ -22,3 +22,4 @@ expo start
 - `main-2` 路由之间的跳转、push、goback、navigate、popToTop
 - `main-3` 参数传递路由 params、setParams、initialParams 
 - `main-4` 配置标题栏 
+- `main-5` 设置标题按钮、自定义图片等

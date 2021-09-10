@@ -19,9 +19,19 @@ function LogoTitle(props) {
 }
 
 function HomeScreen({ navigation }) {
+  const [count, setCount] = React.useState(0);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button  color="#fff" onPress={() => setCount((c) => c + 1)} title="替换的按钮" />
+      ),
+    });
+  }, [navigation, setCount]);
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
+      <Text>count: { count }</Text>
       <Button
         title="Go to Profile"
         onPress={() =>
@@ -33,6 +43,8 @@ function HomeScreen({ navigation }) {
 }
 
 function ProfileScreen({ navigation }) {
+
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Profile screen</Text>
@@ -56,6 +68,13 @@ function App() {
           component={HomeScreen}
           options={{ 
             headerTitle: props => <LogoTitle {...props} /> ,
+            headerRight: () => (
+            <Button
+              onPress={() => alert('This is a button!')}
+              title="右侧按钮"
+              color="#fff"
+            />
+          ),
             title: '首页',
             headerStyle:{
               backgroundColor:'red',
@@ -64,7 +83,8 @@ function App() {
             headerTintColor:'#fff',
             headerTitleStyle:{
               fontWeight:"blod"
-            }
+            },
+          
           }}
         />
         <Stack.Screen
